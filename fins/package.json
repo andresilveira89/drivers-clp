@@ -1,0 +1,17 @@
+{
+  "name": "fins",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx nodemon main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "moment": "^2.29.2",
+    "omron-fins": "^0.5.0"
+  }
+}
