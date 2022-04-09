@@ -17,6 +17,7 @@ class Conexao {
                 console.log(error)
             }
             else {
+                console.log('Banco de dados conectado')
                 if (result.warningCount === 0) {
                     console.log('Tabela criada com sucesso')
                 }

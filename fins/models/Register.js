@@ -17,7 +17,6 @@ class Register {
                 Conexao.record(dados)
             }else {
                 console.log("Equipamento offline, a gravação foi interrompida")
-                console.log(dados)
             }
         }catch (e) {
             const dadosJSON = JSON.parse(readFileSync(__dirname + '/erros.json'))

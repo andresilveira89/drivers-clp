@@ -1,4 +1,3 @@
-import moment from "moment";
 import Register from "./Register.js";
 export default class Component {
     #name; #address
@@ -7,36 +6,42 @@ export default class Component {
         this.#name = name
         this.#address = address
     }
-    memoryReset() {
-        const values = {
-            EQUIPAMENTO: this.#name,
-            ADDRESS: this.#address,
-            STATUS: "online",
-            RESPONSE: 0
+    memoryReset(response) {
+        const value = response.values[0].toFixed(2)
+        if (this.#valuePrevius > value) {
+            const values = {
+                EQUIPAMENTO: this.#name,
+                ADDRESS: this.#address,
+                STATUS: "online",
+                RESPONSE: value
+            }
+            const values2 = {
+                EQUIPAMENTO: this.#name,
+                ADDRESS: this.#address,
+                STATUS: "online",
+                RESPONSE: 0
+            }
+            Register.order(values)
+            Register.order(values2)
         }
-        Register.order(values)
+        this.#valuePrevius = value
     }
     reply(response) {
-        const value = response.values[0].toFixed(2)
         const values = {
             EQUIPAMENTO: this.#name,
             ADDRESS: this.#address,
             STATUS: "online",
-            RESPONSE: value
+            RESPONSE: response.values[0].toFixed(2)
         }
-        if (this.#valuePrevius > value) this.memoryReset()
-        this.#valuePrevius = value
         Register.order(values)
     }
-    error(response) {
+    timeout(response) {
         const values = {
             EQUIPAMENTO: this.#name,
             ADDRESS: this.#address,
             STATUS: "online",
-            RESPONSE: 30.3
+            RESPONSE: false
         }
-        console.log(`Error from erro: ${cont}`)
-        cont += 1
         Register.order(values)
     }
 }
