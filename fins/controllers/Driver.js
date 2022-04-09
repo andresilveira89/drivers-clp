@@ -6,6 +6,7 @@ export default class Driver extends Component {
     constructor(name, address, port, memory, range, timeout=5000) {
         super(name, address)
         this.#reply = this.reply.bind(this)
+        this.#analisty = this.analisty.bind(this)
         this.#error = this.error.bind(this)
         this.#address = address
         this.#port = port
@@ -20,6 +21,10 @@ export default class Driver extends Component {
     read() {
         this.#clp.on('reply', this.#reply)
         this.#clp.on('error', this.#error)
+        this.#clp.read(this.#memory, this.#range)
+    }
+    memoryAnalist(){
+        this.#clp.on('reply', this.#analisty)
         this.#clp.read(this.#memory, this.#range)
     }
 }

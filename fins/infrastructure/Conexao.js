@@ -10,14 +10,6 @@ class Conexao {
         this.conexao = createConnection(dados)
         this.createTable()
     }
-    verifyStatus() {
-        if (this.conexao.state === 'disconnected') {
-            this.conexao.connect()
-            return true
-        }else {
-            return false
-        }
-    }
     createTable() {
         const sql = "CREATE TABLE IF NOT EXISTS clp (EQUIPAMENTO text, STATUS varchar(20), TURNO int, DATA datetime, CONSUMO_M³ float)"
         this.conexao.query(sql, (error, result) => {

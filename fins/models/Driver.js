@@ -7,6 +7,9 @@ export default class Component {
         this.#name = name
         this.#address = address
     }
+    analisty(response) {
+        
+    }
     reply(response) {
         const values = {
             EQUIPAMENTO: this.#name,
