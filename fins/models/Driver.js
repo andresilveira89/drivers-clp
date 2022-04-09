@@ -1,5 +1,7 @@
 import moment from "moment";
-export default class Driver {
+import Register from "./Register.js";
+
+export default class Component {
     #name; #address
      constructor(name, address) {
         this.#name = name
@@ -7,18 +9,20 @@ export default class Driver {
     }
     reply(response) {
         const values = {
-            name: this.#name,
-            address: this.#address
+            EQUIPAMENTO: this.#name,
+            ADDRESS: this.#address,
+            STATUS: "online",
+            RESPONSE: response.values[0].toFixed(2)
         }
-        console.log(values)
+        Register.order(values)
     }
     error(response) {
         const values = {
-            name: this.#name,
-            address: this.#address,
-            date: moment().format("YYYY-MM-DD HH:mm:ss"),
-            response: false
+            EQUIPAMENTO: this.#name,
+            ADDRESS: this.#address,
+            STATUS: "online",
+            RESPONSE: 30.3
         }
-        console.log(values)
+        Register.order(values)
     }
 }

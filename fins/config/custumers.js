@@ -1,9 +1,9 @@
-import Driver from '../controllers/driver.js';
+import Driver from '../controllers/Driver.js';
 import clps from './clps.js';
-const data = []
+const Custumers = []
 
 clps.forEach(value => {
-    data.push(new Driver(value.name, value.address, value.port, value.memory, value.range))
+    Custumers.push(new Driver(value.name, value.address, value.port, value.memory, value.range))
 })
 
-export default data
+export default Custumers

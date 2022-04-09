@@ -1,7 +1,7 @@
 import { FinsClient } from 'omron-fins';
-import driver from '../models/driver.js';
+import Component from '../models/Driver.js';
 
-export default class Driver extends driver{
+export default class Driver extends Component {
     #port; #address; #timeout; #clp; #memory; #range; #reply; #error
     constructor(name, address, port, memory, range, timeout=5000) {
         super(name, address)
