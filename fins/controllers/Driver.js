@@ -2,7 +2,8 @@ import { FinsClient } from 'omron-fins';
 import Component from '../models/Driver.js';
 
 export default class Driver extends Component {
-    #port; #address; #timeout; #clp; #memory; #range; #reply; #error
+    #port; #address; #timeout; #clp; #memory; #range; #reply; #error; #analisty; 
+    #stopedAnalist = true
     constructor(name, address, port, memory, range, timeout=5000) {
         super(name, address)
         this.#reply = this.reply.bind(this)
@@ -22,9 +23,17 @@ export default class Driver extends Component {
         this.#clp.on('reply', this.#reply)
         this.#clp.on('error', this.#error)
         this.#clp.read(this.#memory, this.#range)
+        if (this.#stopedAnalist) {
+            this.routineAnalist()
+            this.#stopedAnalist = false
+        }
     }
     memoryAnalist(){
-        this.#clp.on('reply', this.#analisty)
         this.#clp.read(this.#memory, this.#range)
+    }
+    routineAnalist() {
+        setInterval(() => {
+            this.memoryAnalist()
+        }, 5000)
     }
 }

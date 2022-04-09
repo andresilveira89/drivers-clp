@@ -25,14 +25,7 @@ class Conexao {
     }
     record(values = {}) {
         const sql = "INSERT INTO clp SET ?"
-        this.conexao.query(sql, values, (error, result) => {
-            if (error) {
-                console.log(error)
-            }
-            else {
-                console.log(result)
-            }
-        })
+        this.conexao.query(sql, values)
     }
 }
 
